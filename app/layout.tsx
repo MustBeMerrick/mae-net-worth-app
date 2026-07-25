@@ -34,7 +34,10 @@ export default function RootLayout({
         <div className="app-shell">
           <aside className="sidebar" aria-label="Primary navigation">
             <Link href="/" className="brand" aria-label="Net Worth dashboard">
-              <span className="brand-mark">NW</span>
+              <span className="brand-mark">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/icon-512.png" alt="" width={44} height={44} />
+              </span>
               <span>
                 <strong>Net Worth</strong>
                 <small>Private ledger</small>
