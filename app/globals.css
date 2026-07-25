@@ -367,6 +367,12 @@ td small,
   background: #fbfaf7;
 }
 
+.entry-form input[type="date"] {
+  width: auto;
+  max-width: 100%;
+  justify-self: start;
+}
+
 .entry-form input:focus,
 .entry-form select:focus {
   border-color: var(--green);
@@ -707,6 +713,12 @@ tr.row-leaving {
   background: var(--surface);
   color: var(--ink);
   width: 100%;
+}
+
+.chart-calc-grid input[type="date"] {
+  width: auto;
+  max-width: 100%;
+  align-self: start;
 }
 
 .chart-calc-grid input:focus {
