@@ -340,6 +340,7 @@ td small,
 
 .entry-form label {
   display: grid;
+  min-width: 0;
   gap: 7px;
 }
 
@@ -354,6 +355,9 @@ td small,
 .entry-form input,
 .entry-form select {
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
   min-height: 42px;
   padding: 0 12px;
   border: 1px solid var(--line);
