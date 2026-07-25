@@ -157,7 +157,7 @@ export function ContributionsTable({ rows, accountById }: Props) {
             <col style={{ width: "130px" }} />
             <col style={{ width: "220px" }} />
             <col style={{ width: "260px" }} />
-            <col />
+            <col style={{ width: "160px" }} />
             <col style={{ width: "90px" }} />
           </colgroup>
           <thead>

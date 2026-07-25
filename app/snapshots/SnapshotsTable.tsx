@@ -31,7 +31,6 @@ export function SnapshotsTable({ rows }: Props) {
           <thead>
             <tr>
               <th>Date</th>
-              <th>Label</th>
               <th>Kind</th>
               <th>Invested</th>
               <th>Net Worth</th>
@@ -43,7 +42,6 @@ export function SnapshotsTable({ rows }: Props) {
             {visibleRows.map((snapshot) => (
               <tr key={snapshot.id} className={snapshot.id === rowLeavingId ? "row-leaving" : undefined}>
                 <td>{dateLabel(snapshot.snapshotDate)}</td>
-                <td><strong>{snapshot.label}</strong></td>
                 <td><span className="tag">{snapshot.kind.replace("_", " ")}</span></td>
                 <td>{currencyPrecise(snapshot.investedTotal)}</td>
                 <td>{currencyPrecise(snapshot.netWorthTotal)}</td>
