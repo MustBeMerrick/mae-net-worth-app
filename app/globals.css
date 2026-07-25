@@ -1336,17 +1336,11 @@ tr.row-leaving {
   }
 
   .entry-form {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .entry-form label:first-of-type,
-  .entry-form .form-field-wide {
-    grid-column: 1 / -1;
+    grid-template-columns: 1fr;
   }
 
   .form-actions {
     display: grid;
-    grid-column: 1 / -1;
   }
 
   .metric-grid,
