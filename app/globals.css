@@ -333,7 +333,7 @@ td small,
 
 .entry-form {
   display: grid;
-  grid-template-columns: minmax(220px, 1.1fr) minmax(160px, 0.7fr) minmax(160px, 0.7fr) minmax(220px, 1fr) auto;
+  grid-template-columns: minmax(220px, 1.1fr) 160px minmax(160px, 0.7fr) minmax(220px, 1fr) auto;
   align-items: end;
   gap: 14px;
 }
@@ -371,6 +371,46 @@ td small,
   width: auto;
   max-width: 100%;
   justify-self: start;
+}
+
+.amount-field {
+  display: flex;
+  align-items: stretch;
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfaf7;
+  overflow: hidden;
+}
+
+.amount-sign-toggle {
+  flex: 0 0 auto;
+  width: 42px;
+  border: none;
+  border-right: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.amount-sign-toggle:hover {
+  background: var(--surface);
+}
+
+.amount-field input {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+.amount-field input:focus {
+  outline: none;
 }
 
 .entry-form input:focus,
@@ -658,7 +698,7 @@ tr.row-leaving {
 }
 
 .chart-calc {
-  flex: 1 1 460px;
+  flex: 0 1 480px;
   padding: 12px 14px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -694,7 +734,7 @@ tr.row-leaving {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  flex: 1 1 104px;
+  flex: 0 1 140px;
   min-width: 92px;
 }
 
@@ -1353,11 +1393,17 @@ tr.row-leaving {
   }
 
   .entry-form {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .entry-form label:first-of-type,
+  .entry-form .form-field-wide {
+    grid-column: 1 / -1;
   }
 
   .form-actions {
     display: grid;
+    grid-column: 1 / -1;
   }
 
   .chart-calc-grid label.chart-calc-date {

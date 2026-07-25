@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { accountLabel, currencyPrecise } from "@/lib/calculations";
 import { getFinanceData } from "@/lib/db-data";
 import { addContribution } from "./actions";
+import { AmountField } from "./AmountField";
 import { ContributionsTable } from "./ContributionsTable";
 
 export const dynamic = "force-dynamic";
@@ -67,14 +68,7 @@ export default async function ContributionsPage({
           </label>
           <label>
             <span>Amount</span>
-            <input
-              name="amount"
-              type="number"
-              step="0.01"
-              inputMode="decimal"
-              placeholder="0.00"
-              required
-            />
+            <AmountField />
           </label>
           <label className="form-field-wide">
             <span>Note</span>
