@@ -130,7 +130,7 @@ export function ProjectionCalc({ fit }: { fit: ExponentialFit }) {
             </span>
           </div>
         </label>
-        <label>
+        <label className="chart-calc-date">
           <span>Date</span>
           <input type="date" value={shown("date")} onChange={(e) => onEdit("date", e.target.value)} />
         </label>

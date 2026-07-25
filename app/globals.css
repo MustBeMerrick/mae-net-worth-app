@@ -1343,6 +1343,10 @@ tr.row-leaving {
     display: grid;
   }
 
+  .chart-calc-grid label.chart-calc-date {
+    flex-basis: 100%;
+  }
+
   .metric-grid,
   .metric-grid.compact {
     grid-template-columns: repeat(2, minmax(0, 1fr));
