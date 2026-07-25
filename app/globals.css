@@ -342,6 +342,7 @@ td small,
   display: grid;
   min-width: 0;
   gap: 7px;
+  overflow: hidden;
 }
 
 .entry-form label span {
@@ -929,12 +930,16 @@ tr.row-leaving {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  max-width: 100%;
+  overflow: hidden;
   font-size: 0.85rem;
   color: var(--muted);
 }
 
 .chart-range-custom input[type="date"] {
   min-height: 38px;
+  max-width: 100%;
+  box-sizing: border-box;
   padding: 0 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -1345,6 +1350,11 @@ tr.row-leaving {
 
   .chart-calc-grid label.chart-calc-date {
     flex-basis: 100%;
+    overflow: hidden;
+  }
+
+  .chart-range-custom label {
+    flex: 1 1 100%;
   }
 
   .metric-grid,
