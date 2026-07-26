@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Deploy control for net-worth-app -> gmktec home server. Run from the Mac.
+# Deploy control for mae-net-worth-app -> gmktec home server. Run from the Mac.
 # Usage: deploy/deploy.sh <init|deploy|db-push|db-pull|logs|status|restart|stop>
 set -euo pipefail
 
 HOST="${DEPLOY_HOST:-gmktec}"
-ROOT="${DEPLOY_ROOT:-apps/net-worth-app}"   # relative to $HOME on the server
+ROOT="${DEPLOY_ROOT:-apps/mae-net-worth-app}"   # relative to $HOME on the server
 SRC="$ROOT/src"
 DATA="$ROOT/data"
 COMPOSE="docker compose -f deploy/compose.yml"

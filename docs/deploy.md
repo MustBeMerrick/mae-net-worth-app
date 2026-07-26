@@ -7,7 +7,7 @@ touch data. Everything is driven from the Mac via `deploy/deploy.sh`.
 ## Server layout
 
 ```
-~/apps/net-worth-app/
+~/apps/mae-net-worth-app/
 ├── src/     # deployed source (rsynced copy of committed HEAD)
 ├── data/    # net-worth.sqlite + timestamped backups — never touched by deploys
 └── env      # runtime secrets (from deploy/env.example) — never in git
@@ -17,7 +17,7 @@ touch data. Everything is driven from the Mac via `deploy/deploy.sh`.
 
 1. SSH alias `gmktec` in `~/.ssh/config` (already done).
 2. `deploy/deploy.sh init` — creates the folders above, uploads the env template.
-3. SSH in and edit `~/apps/net-worth-app/env` (set a real `SESSION_SECRET`).
+3. SSH in and edit `~/apps/mae-net-worth-app/env` (set a real `SESSION_SECRET`).
 4. `deploy/deploy.sh deploy` — first build + start (empty DB, schema auto-created).
 5. `deploy/deploy.sh db-push` — seed the server with the local database.
 
@@ -33,7 +33,7 @@ touch data. Everything is driven from the Mac via `deploy/deploy.sh`.
 | `deploy/deploy.sh restart` / `stop` | Restart / stop the container |
 
 Overrides: `DEPLOY_HOST` (default `gmktec`), `DEPLOY_ROOT` (default
-`apps/net-worth-app`), `NW_PORT` on the server (default 3000).
+`apps/mae-net-worth-app`), `NW_PORT` on the server (default 3001).
 
 ## How a deploy works
 
@@ -58,9 +58,9 @@ never automatic. Avoid pulling while actively entering data in the server app.
 ## Security: LAN-only until auth exists
 
 The app has **no authentication** (see AGENTS.md). Do not port-forward or put
-it on a public domain yet. Access it at `http://gmktec.local:3000` on the LAN,
+it on a public domain yet. Access it at `http://gmktec.local:3001` on the LAN,
 or install Tailscale on the server + phone for remote access over a private
-tunnel. Revisit `networth.mustbemerrick.com` + HTTPS (Caddy) after real auth.
+tunnel. Revisit `mae-networth.mustbemerrick.com` + HTTPS (Caddy) after real auth.
 
 ## Later: auto-deploy on push to master
 
@@ -76,8 +76,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          rsync -a --delete ./ ~/apps/net-worth-app/src/
-          cd ~/apps/net-worth-app/src
+          rsync -a --delete ./ ~/apps/mae-net-worth-app/src/
+          cd ~/apps/mae-net-worth-app/src
           docker compose -f deploy/compose.yml build app
           docker compose -f deploy/compose.yml run --rm migrate
           docker compose -f deploy/compose.yml up -d app

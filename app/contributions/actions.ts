@@ -80,6 +80,7 @@ export async function addContribution(formData: FormData) {
   if (filterAccount) qs.set("account", filterAccount);
   if (filterYear) qs.set("year", filterYear);
   if (filterKind) qs.set("kind", filterKind);
+  qs.set("celebrate", "contribution");
   const qStr = qs.toString();
   redirect(qStr ? `/contributions?${qStr}` : "/contributions");
 }

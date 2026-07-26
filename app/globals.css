@@ -1,16 +1,16 @@
 :root {
   color-scheme: light;
-  --bg: #f7f6f1;
+  --bg: #fffbf0;
   --surface: #ffffff;
-  --surface-2: #eeece3;
-  --ink: #18221e;
-  --muted: #667169;
-  --line: #d9d5c8;
-  --green: #1d766f;
-  --blue: #5572b8;
-  --red: #c25746;
-  --gold: #d39f33;
-  --shadow: 0 20px 50px rgba(32, 38, 35, 0.08);
+  --surface-2: #fbf3de;
+  --ink: #5a4238;
+  --muted: #9c8477;
+  --line: #f0dcc9;
+  --green: #8fbf9a;
+  --blue: #9fb4d9;
+  --red: #e3897e;
+  --gold: #e8b458;
+  --shadow: 0 20px 50px rgba(90, 66, 56, 0.1);
 }
 
 * {
@@ -65,8 +65,20 @@ a {
   height: 100vh;
   padding: 24px;
   min-width: 0;
-  color: #f3efe4;
-  background: #19231f;
+  color: #fdf6e8;
+  background:
+    linear-gradient(
+      to bottom,
+      #5a4238 0%,
+      #5a4238 150px,
+      rgba(90, 66, 56, 0.92) 230px,
+      rgba(90, 66, 56, 0.7) 350px,
+      rgba(90, 66, 56, 0.5) 470px,
+      rgba(90, 66, 56, 0.35) 590px,
+      rgba(90, 66, 56, 0.35) 100%
+    ),
+    url("/sidebar-pattern.png") top center / cover no-repeat,
+    #5a4238;
 }
 
 .brand {
@@ -82,9 +94,9 @@ a {
   height: 44px;
   place-items: center;
   overflow: hidden;
-  border: 1px solid rgba(243, 239, 228, 0.2);
+  border: 1px solid rgba(253, 246, 232, 0.2);
   border-radius: 8px;
-  background: rgba(243, 239, 228, 0.08);
+  background: rgba(253, 246, 232, 0.08);
   font-weight: 800;
 }
 
@@ -101,7 +113,7 @@ a {
 
 .brand small,
 .nav-list a {
-  color: rgba(243, 239, 228, 0.72);
+  color: rgba(253, 246, 232, 0.72);
 }
 
 .nav-list {
@@ -118,8 +130,8 @@ a {
 
 .nav-list a:hover,
 .nav-list a:focus-visible {
-  color: #f3efe4;
-  background: rgba(243, 239, 228, 0.1);
+  color: #fdf6e8;
+  background: rgba(253, 246, 232, 0.1);
   outline: none;
 }
 
@@ -219,8 +231,8 @@ a {
 
 .action-button-primary {
   color: #ffffff;
-  border-color: #19231f;
-  background: #19231f;
+  border-color: #5a4238;
+  background: #5a4238;
 }
 
 .action-button:hover,
@@ -295,6 +307,10 @@ td small,
   gap: 24px;
 }
 
+.two-column.two-only {
+  grid-template-columns: 1fr 1fr;
+}
+
 .panel {
   min-width: 0;
   padding: 20px;
@@ -323,7 +339,7 @@ td small,
   grid-template-columns: 2fr 2fr 1.5fr;
   padding: 12px 10px;
   border-top: 2px solid var(--ink);
-  background: #fbfaf7;
+  background: #fffbf0;
   font-size: 0.94rem;
 }
 
@@ -364,7 +380,7 @@ td small,
   border: 1px solid var(--line);
   border-radius: 8px;
   color: var(--ink);
-  background: #fbfaf7;
+  background: #fffbf0;
 }
 
 .entry-form input[type="date"] {
@@ -379,7 +395,7 @@ td small,
   min-height: 42px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #fbfaf7;
+  background: #fffbf0;
   overflow: hidden;
 }
 
@@ -476,7 +492,7 @@ td[rowspan] {
 }
 
 .subtotal-row td {
-  background: #fbfaf7;
+  background: #fffbf0;
   font-weight: 850;
 }
 
@@ -629,6 +645,56 @@ tr.row-leaving {
   background: rgba(255,255,255,0.15);
 }
 
+.celebration {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  pointer-events: none;
+}
+
+@keyframes confetti-pop {
+  0% { transform: rotate(var(--angle)) translateY(0) scale(0.4); opacity: 1; }
+  100% { transform: rotate(var(--angle)) translateY(-120px) scale(1); opacity: 0; }
+}
+
+.celebration-piece {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--green);
+  animation: confetti-pop 0.8s var(--delay, 0ms) ease-out forwards;
+}
+
+.celebration-piece:nth-child(3n) { background: var(--blue); }
+.celebration-piece:nth-child(3n + 1) { background: var(--gold); }
+.celebration-piece:nth-child(3n + 2) { background: var(--red); }
+
+@keyframes celebration-badge-pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { transform: scale(1.15); opacity: 1; }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.celebration-badge {
+  padding: 14px 28px;
+  border-radius: 999px;
+  color: var(--ink);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  font-size: 1.2rem;
+  font-weight: 850;
+  animation: celebration-badge-pop 0.5s ease-out forwards;
+}
+
 .tag {
   display: inline-flex;
   align-items: center;
@@ -680,7 +746,7 @@ tr.row-leaving {
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #fbfaf7;
+  background: #fffbf0;
 }
 
 .chart-bottom {
@@ -969,7 +1035,7 @@ tr.row-leaving {
 
 .segmented-control button.active {
   color: #ffffff;
-  background: #19231f;
+  background: #5a4238;
 }
 
 .chart-range-custom {
@@ -1050,7 +1116,7 @@ tr.row-leaving {
   padding: 12px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #fbfaf7;
+  background: #fffbf0;
 }
 
 .annual-summary-grid span {
@@ -1125,7 +1191,7 @@ tr.row-leaving {
 
 .annual-account-dropdown[open] .annual-table-wrap {
   margin: 0 6px 6px;
-  background: #fbfaf7;
+  background: #fffbf0;
 }
 
 .annual-table-wrap {
@@ -1212,8 +1278,8 @@ tr.row-leaving {
 
 .annual-institution-subtotal th,
 .annual-institution-subtotal td {
-  background: #f5f3eb;
-  color: #3a3f3c;
+  background: #f6ead4;
+  color: #5a4238;
   font-size: 0.85rem;
   font-weight: 700;
   padding-top: 6px;
@@ -1232,7 +1298,7 @@ tr.row-leaving {
 .annual-total-row th,
 .annual-total-row td {
   border-top: 2px solid var(--ink);
-  background: #fbfaf7;
+  background: #fffbf0;
   font-weight: 850;
 }
 
@@ -1250,7 +1316,7 @@ tr.row-leaving {
   border: 1px solid var(--line);
   border-radius: 6px;
   color: var(--ink);
-  background: #fbfaf7;
+  background: #fffbf0;
   font: inherit;
   font-size: 0.9rem;
   text-align: right;

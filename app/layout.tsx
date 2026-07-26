@@ -1,14 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
+import { Celebration } from "@/components/Celebration";
 import { ToastProvider } from "@/components/ToastProvider";
+import { FEATURES } from "@/lib/features";
 import "./globals.css";
 
 const navItems = [
-  { href: "/", label: "Dashboard" },
-  { href: "/contributions", label: "Contributions" },
-  { href: "/annual-returns", label: "Annual Returns" },
-  { href: "/charts", label: "Charts" }
-];
+  { href: "/", label: "Dashboard", show: true },
+  { href: "/contributions", label: "Contributions", show: true },
+  { href: "/annual-returns", label: "Annual Returns", show: FEATURES.annualReturnsPage },
+  { href: "/charts", label: "Charts", show: FEATURES.chartsPage }
+].filter((item) => item.show);
 
 export const metadata: Metadata = {
   title: "Net Worth",
@@ -18,7 +21,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f7f6f1",
+  themeColor: "#fffbf0",
   width: "device-width",
   initialScale: 1
 };
@@ -53,6 +56,9 @@ export default function RootLayout({
           </aside>
           <ToastProvider>
             <main className="main-content">{children}</main>
+            <Suspense fallback={null}>
+              <Celebration />
+            </Suspense>
           </ToastProvider>
         </div>
       </body>

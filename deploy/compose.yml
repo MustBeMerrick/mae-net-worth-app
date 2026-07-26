@@ -1,19 +1,19 @@
-# Run from the server: ~/apps/net-worth-app/src/deploy/compose.yml
+# Run from the server: ~/apps/mae-net-worth-app/src/deploy/compose.yml
 # Paths below are relative to this file: ../../data and ../../env live
-# alongside src/ in ~/apps/net-worth-app/, outside the deployed tree.
-name: net-worth
+# alongside src/ in ~/apps/mae-net-worth-app/, outside the deployed tree.
+name: mae-net-worth
 
 services:
   app:
     build:
       context: ..
       dockerfile: deploy/Dockerfile
-    image: net-worth-app
+    image: mae-net-worth-app
     # run as marc (uid 1000), not root: files created on the data mount stay owned by marc
     user: "1000:1000"
     restart: unless-stopped
     ports:
-      - "${NW_PORT:-3000}:3000"
+      - "${NW_PORT:-3001}:3000"
     environment:
       # pinned here, not in the env file: the app must only ever see the mounted DB
       DATABASE_URL: "file:/app/data/net-worth.sqlite?connection_limit=1"

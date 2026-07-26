@@ -85,15 +85,17 @@ async function main() {
     });
   }
 
-  await prisma.balanceSyncRun.create({
-    data: {
-      id: "sync-2026-05-25",
-      source: "mock_plaid",
-      status: "succeeded",
-      startedAt: new Date("2026-05-25T14:19:30-07:00"),
-      finishedAt: new Date("2026-05-25T14:20:00-07:00")
-    }
-  });
+  if (balanceFetches.length > 0) {
+    await prisma.balanceSyncRun.create({
+      data: {
+        id: "sync-2026-05-25",
+        source: "mock_plaid",
+        status: "succeeded",
+        startedAt: new Date("2026-05-25T14:19:30-07:00"),
+        finishedAt: new Date("2026-05-25T14:20:00-07:00")
+      }
+    });
+  }
 
   for (const fetch of balanceFetches) {
     await prisma.balanceFetch.create({

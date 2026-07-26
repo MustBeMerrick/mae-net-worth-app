@@ -6,6 +6,7 @@ import { BalanceHistoryProvider, BalanceInput } from "@/components/BalanceInputs
 import { MetricCard } from "@/components/MetricCard";
 import { SnapshotForm } from "@/components/SnapshotForm";
 import { TrendChart } from "@/components/TrendChart";
+import { FEATURES } from "@/lib/features";
 import {
   currency,
   currencyPrecise,
@@ -36,16 +37,18 @@ export default async function DashboardPage() {
           <h1>Net Worth Command Center</h1>
         </div>
         <div className="action-row">
-          <div className="action-button-stack">
-            <ActionButton tone="primary">Sync Plaid Balances</ActionButton>
-            {summary.lastPlaidSync ? (
-              <small className="action-subtext">synced: {dateTimeLabel(summary.lastPlaidSync)}</small>
-            ) : null}
-          </div>
+          {FEATURES.plaidSync ? (
+            <div className="action-button-stack">
+              <ActionButton tone="primary">Sync Plaid Balances</ActionButton>
+              {summary.lastPlaidSync ? (
+                <small className="action-subtext">synced: {dateTimeLabel(summary.lastPlaidSync)}</small>
+              ) : null}
+            </div>
+          ) : null}
           <button className="action-button action-button-primary" type="submit" form="balances-form">
             Save Balances
           </button>
-          <SnapshotForm />
+          {FEATURES.takeSnapshot ? <SnapshotForm /> : null}
           <ActionButton>Export Backup</ActionButton>
         </div>
       </header>
@@ -70,7 +73,7 @@ export default async function DashboardPage() {
       </section>
 
       <BalanceHistoryProvider>
-      <div className="two-column">
+      <div className={FEATURES.allocationChart ? "two-column" : "two-column two-only"}>
         <section className="panel class-panel">
           <div className="section-heading">
             <div>
@@ -171,11 +174,11 @@ export default async function DashboardPage() {
           </div>
         </section>
 
-        <AllocationChart accounts={accountRows} />
+        {FEATURES.allocationChart ? <AllocationChart accounts={accountRows} /> : null}
       </div>
       </BalanceHistoryProvider>
 
-      <TrendChart snapshots={data.snapshots} />
+      {FEATURES.trendChart ? <TrendChart snapshots={data.snapshots} /> : null}
     </div>
   );
 }

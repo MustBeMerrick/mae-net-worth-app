@@ -54,7 +54,7 @@ export async function saveBalances(formData: FormData) {
 
   revalidatePath("/");
   revalidatePath("/annual-returns");
-  redirect("/");
+  redirect(creates.length > 0 ? "/?celebrate=balances" : "/");
 }
 
 // Saves a single account balance on blur — used by auto-save in BalanceInputs.

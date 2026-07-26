@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Private net worth dashboard",
     start_url: "/",
     display: "standalone",
-    background_color: "#f7f6f1",
-    theme_color: "#f7f6f1",
+    background_color: "#fffbf0",
+    theme_color: "#fffbf0",
     icons: [
       {
         src: "/icon.svg",
