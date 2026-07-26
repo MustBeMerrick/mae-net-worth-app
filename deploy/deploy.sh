@@ -42,7 +42,7 @@ cmd_deploy() {
   git archive HEAD | tar -x -C "$tmp"
   rsync -az --delete "$tmp"/ "$HOST:$SRC/"
   ssh "$HOST" "set -e; cd ~/$SRC; $COMPOSE build app; $COMPOSE run --rm migrate; $COMPOSE up -d app"
-  echo "deployed $(git rev-parse --short HEAD) -> http://gmktec.local:3000"
+  echo "deployed $(git rev-parse --short HEAD) -> http://gmktec.local:${NW_PORT:-3001}"
 }
 
 cmd_db_push() {
